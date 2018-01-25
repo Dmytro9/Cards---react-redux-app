@@ -38,15 +38,14 @@ class CardModal extends Component {
     let { card } = this.props;
 
     return (
-      <div className="cardModel" style={{ background: "#eee" }}>
-        <h1>New Card</h1>
+      <div className="cardModel-layout">
+      <div className="cardModel">
+        <h3>New Card</h3>
         <label>Card Front:</label>
         <textarea
           ref={textarea => {
             this.textFront = textarea;
           }}
-          cols="30"
-          rows="10"
           defaultValue={card.front}
         />
         <label>Card Back:</label>
@@ -54,14 +53,13 @@ class CardModal extends Component {
           ref={textarea => {
             this.textBack = textarea;
           }}
-          cols="30"
-          rows="10"
           defaultValue={card.back}
         />
         <p>
-          <button onClick={this.onSave.bind(this)}>Save Card</button>
-          <Link to={`/deck/${this.props.deckId}`}>Cancel</Link>
+          <button className='btn btn-sm btn-default' onClick={this.onSave.bind(this)}>Add Card</button>
+          <Link className='btn btn-sm btn-default' to={`/deck/${this.props.deckId}`}>Cancel</Link>
         </p>
+      </div>
       </div>
     );
   }

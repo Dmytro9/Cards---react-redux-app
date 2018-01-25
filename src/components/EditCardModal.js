@@ -48,31 +48,39 @@ class EditCardModal extends Component {
     );
 
     return (
-      <div className="cardModel" style={{ background: "#eee" }}>
-        <h1>Edit Card</h1>
-        <label>Card Front:</label>
-        <textarea
-          ref={textarea => {
-            this.textFront = textarea;
-          }}
-          cols="30"
-          rows="10"
-          defaultValue={`${editedCard[0].front}`}
-        />
-        <label>Card Back:</label>
-        <textarea
-          ref={textarea => {
-            this.textBack = textarea;
-          }}
-          cols="30"
-          rows="10"
-          defaultValue={`${editedCard[0].back}`}
-        />
-        <p>
-          <button onClick={this.onSave.bind(this)}>Save Changes</button>
-          <Link to={`/deck/${this.props.deckId}`}>Cancel</Link>
-          <button onClick={this.onDelete.bind(this)}>Delete Card</button>
-        </p>
+      <div className="cardModel-layout">
+        <div className="cardModel" style={{ background: "#eee" }}>
+          <h3>Edit Card</h3>
+          <label>Card Front:</label>
+          <textarea
+            ref={textarea => {
+              this.textFront = textarea;
+            }}
+            defaultValue={`${editedCard[0].front}`}
+          />
+          <label>Card Back:</label>
+          <textarea
+            ref={textarea => {
+              this.textBack = textarea;
+            }}
+            defaultValue={`${editedCard[0].back}`}
+          />
+          <p>
+            <button
+              className="btn btn-sm btn-default"
+              onClick={this.onSave.bind(this)}
+            >
+              Save Changes
+            </button>
+            <Link
+              className="btn btn-sm btn-default"
+              to={`/deck/${this.props.deckId}`}
+            >
+              Cancel
+            </Link>
+            <button className="btn btn-sm btn-default pull-right" onClick={this.onDelete.bind(this)}>Delete Card</button>
+          </p>
+        </div>
       </div>
     );
   }

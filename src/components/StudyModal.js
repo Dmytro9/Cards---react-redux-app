@@ -16,55 +16,77 @@ const StudyModal = props => {
 
   let body = (
     <div className="no-cards">
-      <p>You have no cards to study in this deck right now. Good job!</p>
+      <p>
+        You have no cards to study in this deck right now. <br /> Good job!
+      </p>
     </div>
   );
 
   if (card) {
     body = (
-      <div className="study-card">
-        <div className={props.showBack ? "front hide" : "front"}>
-          <div>
-            <p>{card.front}</p>
+      <div className="cardModel-layout">
+        <div className="cardModel">
+          <div className={props.showBack ? "front hide" : "front"}>
+            <div>
+              <Link className="close" to={`/deck/${props.deckId}`}>
+                &times;
+              </Link>
+              <p>{card.front}</p>
+            </div>
+            <button
+              className="btn btn-default pull-right flip"
+              onClick={props.onFlip}
+            >
+              Flip
+            </button>
           </div>
-          <button onClick={props.onFlip}>Flip</button>
-        </div>
 
-        <div className={props.showBack ? "back" : "back hide"}>
-          <div>
-            <p>{card.back}</p>
+          <div className={props.showBack ? "back" : "back hide"}>
+            <div>
+              <Link className="close" to={`/deck/${props.deckId}`}>
+                &times;
+              </Link>
+              <p className="asc">{card.back}</p>
+            </div>
+            <p>How did you do?</p>
+            <p className="back-btn">
+              <button
+                className="btn btn-default"
+                onClick={e =>
+                  props.onStudied(card.id, Math.max(card.score - 1, 1))
+                }
+              >
+                Poorly
+              </button>
+              <button
+                className="btn btn-default"
+                onClick={e => props.onStudied(card.id, card.score)}
+              >
+                Okay
+              </button>
+              <button
+                className="btn btn-default"
+                onClick={e =>
+                  props.onStudied(card.id, Math.min(card.score + 1, 3))
+                }
+              >
+                Great
+              </button>
+            </p>
           </div>
-          <p>How did you do?</p>
-          <p>
-            <button
-              onClick={e =>
-                props.onStudied(card.id, Math.max(card.score - 1, 1))
-              }
-            >
-              Poorly
-            </button>
-            <button onClick={e => props.onStudied(card.id, card.score)}>
-              Okay
-            </button>
-            <button
-              onClick={e =>
-                props.onStudied(card.id, Math.min(card.score + 1, 3))
-              }
-            >
-              Great
-            </button>
-          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="modal study-modal">
-      <Link className="btn close" to={`/deck/${props.deckId}`}>
-        *
-      </Link>
-      {body}
+    <div className="cardModel-layout">
+      <div className="cardModel">
+        <Link className="close" to={`/deck/${props.deckId}`}>
+          &times;
+        </Link>
+        {body}
+      </div>
     </div>
   );
 };
