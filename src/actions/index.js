@@ -9,14 +9,15 @@ export const searchCard = query => ({ type: "SEARCH_CARD", data: query });
 
 export const setShowBack = back => ({ type: "SHOW_BACK", data: back });
 
-// export const receiveData = data => ( { type: 'RECEIVE_DATA', data: data } )
+export const receiveCardData = data => ({ type: "RECEIVE_CARD_DATA", data: data });
+export const receiveDeckData = data => ({ type: "RECEIVE_DECK_DATA", data: data });
 
 // export const fetchData = () => {
-// 	return dispatch => {
-//
-// 		fetch('/api/data')
-// 			.then(res => res.json())
-// 			.then(json => dispatch(receiveData(json)))
-// 			.catch(error => console.log(error))
-// 	}
-// }
+//   return dispatch => {
+    //
+    // 		fetch('/api/data')
+    // 			.then(res => res.json())
+    // 			.then(json => dispatch(receiveData(json)))
+    // 			.catch(error => console.log(error))
+//   };
+// };

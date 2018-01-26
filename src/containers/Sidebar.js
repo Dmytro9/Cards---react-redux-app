@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { newDeck, hideAddDeck } from "../actions";
+import { newDeck, hideAddDeck, receiveDeckData } from "../actions";
 import Deck from "../components/Deck";
 
 class Sidebar extends Component {
@@ -11,8 +12,14 @@ class Sidebar extends Component {
     this.input = null;
   }
 
+  componentDidMount() {
+    const data = JSON.parse(localStorage.getItem("decks"));
+    if (data) this.props.receiveData(data);
+  }
+
   componentDidUpdate() {
     if (this.input) this.input.focus();
+    localStorage.setItem("decks", JSON.stringify(this.props.decks));
   }
 
   addDeck(e) {
@@ -29,10 +36,10 @@ class Sidebar extends Component {
 
   render() {
     let field = this.props.toggleDeckField;
-
+  
     return (
       <div className="col-sm-3 col-md-2 sidebar">
-      <div></div>
+        <div />
         <h2 className="page-header">All Decks</h2>
         <ul className="nav nav-sidebar">
           {this.props.decks.length
@@ -62,8 +69,11 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     newDeck: bindActionCreators(newDeck, dispatch),
-    hideAddDeck: bindActionCreators(hideAddDeck, dispatch)
+    hideAddDeck: bindActionCreators(hideAddDeck, dispatch),
+    receiveData: bindActionCreators(receiveDeckData, dispatch)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+);

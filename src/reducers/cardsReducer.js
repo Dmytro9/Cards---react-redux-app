@@ -1,7 +1,7 @@
 const cardsReducer = (state = [], action) => {
   switch (action.type) {
-    // case 'RECEIVE_DATA':
-    // 	return action.data.card || state
+    case 'RECEIVE_CARD_DATA':
+    	return action.data || state
 
     case "ADD_CARD":
       let newCard = Object.assign({}, action.data, {

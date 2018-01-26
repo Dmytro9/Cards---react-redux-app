@@ -78,7 +78,12 @@ class EditCardModal extends Component {
             >
               Cancel
             </Link>
-            <button className="btn btn-sm btn-default pull-right" onClick={this.onDelete.bind(this)}>Delete Card</button>
+            <button
+              className="btn btn-sm btn-default pull-right"
+              onClick={this.onDelete.bind(this)}
+            >
+              Delete Card
+            </button>
           </p>
         </div>
       </div>

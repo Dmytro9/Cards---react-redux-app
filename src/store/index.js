@@ -1,14 +1,16 @@
-import { createStore,
-	// applyMiddleware
-} from 'redux'
-import appReducer from '../reducers/index'
+import {
+  createStore
+  // applyMiddleware
+} from "redux";
+import appReducer from "../reducers/index";
 // import reduxThunk from 'redux-thunk'
 // import {fetchData} from '../actions'
 
 const store = createStore(
-	appReducer,
-	// applyMiddleware(reduxThunk)
-)
+  appReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // applyMiddleware(reduxThunk)
+);
 
 // function save() {
 // 	let state = store.getState()
@@ -26,7 +28,9 @@ const store = createStore(
 // 	})
 // }
 
-// store.subscribe(save)
+
+
+
 // store.dispatch(fetchData())
 
-export default store
+export default store;
