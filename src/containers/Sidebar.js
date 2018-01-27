@@ -36,7 +36,8 @@ class Sidebar extends Component {
 
   render() {
     let field = this.props.toggleDeckField;
-  
+    var loc = this.props.location.pathname.slice(6);
+
     return (
       <div className="col-sm-3 col-md-2 sidebar">
         <div />
@@ -44,7 +45,7 @@ class Sidebar extends Component {
         <ul className="nav nav-sidebar">
           {this.props.decks.length
             ? this.props.decks.map(deck => {
-                return <Deck key={deck.id} name={deck.name} id={deck.id} />;
+                return <Deck key={deck.id} name={deck.name} id={deck.id} location={loc} />;
               })
             : null}
         </ul>

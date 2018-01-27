@@ -166,3 +166,12 @@ body {
 .back-btn {
   margin-bottom: 16px;
 }
+
+.nav-sidebar .active {
+  color: #000;
+  background-color: #ddd;
+}
+
+.nav-sidebar .active:focus {
+  background-color: #ddd;
+}
